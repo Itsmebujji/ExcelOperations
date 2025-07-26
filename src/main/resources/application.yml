@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ExcelOperations
+  datasource:
+    url: jdbc:h2:mem:testdb # Connects to an in-memory H2 database named 'testdb'.
+    # For a file-based database, use: jdbc:h2:file:/path/to/your/db/file
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: Test@123 # Replace with a strong password in production environments.
+  h2:
+    console:
+      enabled: true # Enables the H2 web console for database management.
+      path: /h2-console # Sets the URL path for accessing the H2 console.
+      settings:
+        web-allow-others: false # Prevents remote access to the H2 console for security.
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update # Controls schema generation (e.g., create, update, validate, none).
+    show-sql: true # Logs SQL queries executed by JPA to the console.
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
