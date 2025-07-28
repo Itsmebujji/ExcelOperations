@@ -3,6 +3,7 @@ package com.poc.exceloperations;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,5 +25,10 @@ public class AppService {
         } catch (IOException e) {
             throw new RuntimeException("Could not store the data: "+e.getMessage());
         }
+    }
+
+    public ByteArrayInputStream exportEmployeesData() {
+        List<EmployeeDetails> employeeDetails = appRepository.findAll();
+        return excelHelper.exportEmployeesData(employeeDetails);
     }
 }
