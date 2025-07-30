@@ -21,3 +21,5 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+key: AIzaSyBtWIOhur4c8flwhHdMiardnQ6cwk4Svrw

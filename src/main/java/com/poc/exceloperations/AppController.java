@@ -46,6 +46,26 @@ public class AppController {
                 .body(new InputStreamResource(in));
     }
 
+    @PostMapping(value = "/upload/xmldata", consumes = MediaType.APPLICATION_XML_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "xml data upload to db")
+    public ResponseEntity<String> uploadData(@RequestBody Employee employee){
+        if(employee==null){
+            return ResponseEntity.badRequest().build();
+        }
+        appService.uploadData(employee);
+        return ResponseEntity.ok("Data is uploaded successfully");
+    }
 
+    @PostMapping(value = "/get/xmldata/employee/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    @Operation(summary = "DB data converts to xml")
+    public ResponseEntity<Object> getXmlData(
+            @PathVariable(name = "id") int id
+    ){
+        if(id==0){
+            return ResponseEntity.badRequest().body("Provide Valid Employee Id");
+        }
+        Employee emp = appService.getXmlData(id);
+        return ResponseEntity.ok(emp);
+    }
 
 }
